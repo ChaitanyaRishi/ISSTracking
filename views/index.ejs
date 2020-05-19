@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h3>Something</h3>
+    <button onclick="getLocation()">Load current location</button>
+    <form action="/getOverHeadLocations" method="post" >
+      <label for="location">Enter your location</label><br /><br />
+      Longitude: <input type="text" name="longitude" id="longitude" /><br />
+      Latitude: <input type="text" name="latitude" id="latitude" /><br /><br />
+      <input type="submit">
+    </form>
+    <p>List of upcoming overhead times:</p>
+    <% if (times) { %>
+    <% times.forEach(function(time) {  console.log(time)%>
+        <h3><%= time%></h3>
+    <% }); %>
+    <% } %>
+
+    <script>
+        var longitude = document.getElementById("longitude");
+        var latitude = document.getElementById("latitude");
+        
+        function getLocation() {
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+          } else { 
+            longitude.innerHTML = "Geolocation is not supported by this browser.";
+          }
+        }
+        
+        function showPosition(position) {
+          latitude.value =  position.coords.latitude 
+          longitude.value = position.coords.longitude;
+        }
+        </script>
+  </body>
+</html>
