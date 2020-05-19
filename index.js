@@ -1,6 +1,5 @@
 const express = require("express");
 const app = express();
-const path = require("path");
 const request = require("request");
 const bodyParser = require("body-parser");
 
@@ -10,7 +9,6 @@ app.set("view engine", "ejs");
 
 app.get("/", function (req, res) {
   res.render("index", { times: [] });
-  // res.sendFile(path.join(__dirname + '/index.html'));
 });
 
 app.post("/getOverHeadLocations", function (req, res) {
